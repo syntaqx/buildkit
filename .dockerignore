@@ -1,0 +1,19 @@
+# dockerignore - modifies docker context to exclude files and directories
+# https://docs.docker.com/engine/reference/builder/#dockerignore-file
+
+.*
+.git*
+.vs*
+
+# containerization files
+.dockerignore
+docker-compose.*
+Dockerfile*
+heroku.yml
+
+# documentation assets
+README.md
+LICENSE
+
+# Vendored dependencyh directories
+vendor/
