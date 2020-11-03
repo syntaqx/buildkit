@@ -1,10 +1,8 @@
-package cmd
+package main
 
 import (
 	"io"
-	"net/url"
 
-	"github.com/pkg/errors"
 	"github.com/uber/jaeger-client-go"
 	tracecfg "github.com/uber/jaeger-client-go/config"
 	"go.uber.org/zap"
@@ -12,8 +10,6 @@ import (
 
 	"github.com/syntaqx/buildkit/pkg/config"
 	"github.com/syntaqx/buildkit/pkg/store"
-	"github.com/syntaqx/buildkit/pkg/store/mysql"
-	"github.com/syntaqx/buildkit/pkg/store/postgres"
 )
 
 func setupLogger(cfg *config.Config) (*zap.Logger, error) {
@@ -43,7 +39,7 @@ func setupLogger(cfg *config.Config) (*zap.Logger, error) {
 }
 
 func setupTracing(cfg *config.Config) (io.Closer, error) {
-	if cfg.Tracing.Enabled {
+	if cfg.Tracing.Endpoint != "" {
 		closer, err := tracecfg.Configuration{
 			Sampler: &tracecfg.SamplerConfig{
 				Type:  jaeger.SamplerTypeConst,
@@ -65,17 +61,5 @@ func setupTracing(cfg *config.Config) (io.Closer, error) {
 }
 
 func setupStorage(cfg *config.Config) (store.Store, error) {
-	parsed, err := url.Parse(cfg.Database.DSN)
-	if err != nil {
-		return nil, errors.Wrap(err, "failed to parse dsn")
-	}
-
-	switch parsed.Scheme {
-	case "postgres":
-		return postgres.New(parsed)
-	case "mysql", "mariadb":
-		return mysql.New(parsed)
-	}
-
-	return nil, store.ErrUnknownDriver
+	return nil, nil
 }

@@ -1,4 +1,4 @@
-package cmd
+package main
 
 import (
 	"context"
@@ -77,13 +77,6 @@ func serverFlags(cfg *config.Config) []cli.Flag {
 			Usage:       "database dsn",
 			EnvVars:     []string{"BUILDKIT_DATABASE_DSN", "BUILDKIT_DATABASE_URL"},
 			Destination: &cfg.Database.DSN,
-		},
-		&cli.BoolFlag{
-			Name:        "tracing-enabled",
-			Value:       false,
-			Usage:       "enable open tracing",
-			EnvVars:     []string{"BUILDKIT_TRACING_ENABLED"},
-			Destination: &cfg.Tracing.Enabled,
 		},
 		&cli.StringFlag{
 			Name:        "tracing-endpoint",

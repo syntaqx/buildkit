@@ -306,31 +306,57 @@ definitions:
   User:
     type: object
     required:
-      - username
+      - login
       - email
     properties:
       id:
         type: string
         format: uuid
         readOnly: true
-      username:
+      login:
         type: string
         x-isnullable: false
-      password:
-        type: string
-        format: password
+        x-omitempty: true
       email:
         type: string
         format: email
         x-isnullable: false
+        x-omitempty: true
+      avatar_url:
+        type: string
+        format: uri
+        x-isnullable: true
+        x-omitempty: false
+      name:
+        type: string
+        x-omitempty: false
+      bio:
+        type: string
+        x-isnullable: true
+        x-omitempty: false
+      location:
+        type: string
+        x-isnullable: true
+        x-omitempty: false
+      company:
+        type: string
+        x-isnullable: true
+        x-omitempty: false
+      birthday:
+        type: string
+        format: date
+        x-isnullable: true
+        x-omitempty: false
       created_at:
         type: string
         format: date-time
         x-isnullable: false
+        x-omitempty: false
       updated_at:
         type: string
         format: date-time
         x-isnullable: false
+        x-omitempty: false
 
 securityDefinitions:
   BasicAuth:

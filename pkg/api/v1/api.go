@@ -6,9 +6,9 @@ import (
 	"github.com/go-openapi/loads"
 	"github.com/go-openapi/runtime/middleware"
 
+	"github.com/syntaqx/buildkit/pkg/api/v1/handler"
 	"github.com/syntaqx/buildkit/pkg/api/v1/restapi"
 	"github.com/syntaqx/buildkit/pkg/api/v1/restapi/operations"
-	"github.com/syntaqx/buildkit/pkg/service"
 )
 
 //go:generate swagger generate server --target . --spec ../../../api/openapi-spec/v1.yml --exclude-main --regenerate-configureapi
@@ -29,9 +29,9 @@ func New() (*API, error) {
 		return middleware.Spec("", nil, api.Context().RoutesHandler(b))
 	}
 
-	userService := service.UserService{}
+	usersvc := handler.UserService{}
 
-	userService.ConfigureAPI(api)
+	usersvc.ConfigureHandlers(api)
 
 	return &API{
 		Handler: api.Serve(nil),

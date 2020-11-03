@@ -1,4 +1,4 @@
-package service
+package handler
 
 import (
 	"fmt"
@@ -16,17 +16,17 @@ import (
 type UserService struct {
 }
 
-func (s *UserService) ConfigureAPI(api *operations.BuildKitAPI) {
+func (s *UserService) ConfigureHandlers(api *operations.BuildKitAPI) {
 	api.UserGetUserHandler = user.GetUserHandlerFunc(s.GetUser)
 }
 
 func (s *UserService) GetUser(params user.GetUserParams) middleware.Responder {
-	var username = "fixture"
+	var login = "fixture"
 
 	payload := &models.User{
 		ID:        strfmt.UUID(uuid.Must(uuid.NewV4()).String()),
-		Username:  username,
-		Email:     strfmt.Email(fmt.Sprintf("%s@domain.com", username)),
+		Login:     login,
+		Email:     strfmt.Email(fmt.Sprintf("%s@domain.com", login)),
 		CreatedAt: strfmt.DateTime(time.Now()),
 		UpdatedAt: strfmt.DateTime(time.Now()),
 	}

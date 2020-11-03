@@ -27,7 +27,6 @@ type Logging struct {
 
 // Tracing defines the tracing client configuration.
 type Tracing struct {
-	Enabled  bool
 	Endpoint string
 }
 

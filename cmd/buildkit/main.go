@@ -2,23 +2,27 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"os"
+	"time"
 
 	_ "github.com/joho/godotenv/autoload"
 	"github.com/urfave/cli/v2"
 
-	"github.com/syntaqx/buildkit/pkg/cmd"
 	"github.com/syntaqx/buildkit/pkg/config"
 )
 
 func main() {
+	time.Local = time.UTC
+	rand.Seed(time.Now().UTC().Unix())
+
 	cfg := config.Load()
 
 	app := &cli.App{
 		Name:  "buildkit",
 		Flags: globalFlags(cfg),
 		Commands: []*cli.Command{
-			cmd.Server(cfg),
+			Server(cfg),
 		},
 	}
 
