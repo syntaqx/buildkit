@@ -46,6 +46,14 @@ jobs:
         name: git checkout
         uses: actions/checkout@v2
       -
+        name: setup go
+        uses: actions/setup-go@v2
+      -
+        run: |
+          make install-tools
+          go mod download
+          go generate ./...
+      -
         uses: golangci/golangci-lint-action@v2
         name: golangci-lint
         with:
