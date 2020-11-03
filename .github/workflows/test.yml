@@ -23,12 +23,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-go-
       -
-        run: |
-          make install-tools mod-download
-          go generate ./...
-
-      - run: go test -v -race -coverprofile=coverage.out -covermode=atomic ./...
-
+        run: mod-download generate
+      -
+        run: go test -v -race -coverprofile=coverage.out -covermode=atomic ./...
       -
         name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1.0.13
@@ -46,12 +43,9 @@ jobs:
         name: setup go
         uses: actions/setup-go@v2
       -
-        run: |
-          make install-tools mod-download
-          go generate ./...
+        run: make mod-download generate
       -
         uses: golangci/golangci-lint-action@v2
         name: golangci-lint
         with:
           version: v1.32
-        continue-on-error: true # TODO: require this, disabled during prototype
