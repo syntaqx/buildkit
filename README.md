@@ -12,11 +12,11 @@
 - [API](http://localhost:8080/)
 - [Jaeger UI](http://localhost:16686/)
 
-## Build strategies
+## Docker build specifications
 
 | Event          | Ref                    | Commit SHA | Docker Tags                       |
 |----------------|------------------------|------------|-----------------------------------|
-| `schedule`     | `refs/heads/master`    | `45f132a`  | `sha-45f132a`, `nightly`          |
+| `schedule`     | `refs/heads/main`      | `45f132a`  | `sha-45f132a`, `nightly`          |
 | `push`         | `refs/heads/main`      | `cf20257`  | `sha-cf20257`, `edge`             |
 | `push`         | `refs/heads/my/branch` | `a5df687`  | `sha-a5df687`, `my-branch`        |
 | `push tag`     | `refs/tags/v1.2.3`     | `bf4565b`  | `sha-bf4565b`, `v1.2.3`, `latest` |
