@@ -7,4 +7,4 @@
 
 [MIT]: https://syntaqx.mit-license.org
 
-`serve` is open source software released under the [MIT license][MIT].
+`buildkit` is open source software released under the [MIT license][MIT].
