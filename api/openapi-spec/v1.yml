@@ -6,11 +6,9 @@ info:
 
 consumes:
   - application/json
-  - application/yaml
 
 produces:
   - application/json
-  - application/yaml
 
 schemes:
   - http
@@ -64,21 +62,24 @@ definitions:
         type: "string"
         format: "uuid"
         readOnly: true
-      slug:
-        type: "string"
       username:
         type: "string"
+        x-isnullable: false
       password:
         type: "string"
         format: "password"
       email:
         type: "string"
+        format: "email"
+        x-isnullable: false
       created_at:
         type: "string"
         format: "date-time"
+        x-isnullable: false
       updated_at:
         type: "string"
         format: "date-time"
+        x-isnullable: false
 
   GenericError:
     description: General error

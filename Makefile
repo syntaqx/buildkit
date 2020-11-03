@@ -1,7 +1,6 @@
 PATH := $(shell go env GOPATH)/bin:$(PATH)
 
 mod-download:
-	echo $(go env GOPATH)
 	go mod download
 
 install-tools:

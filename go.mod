@@ -7,6 +7,7 @@ require (
 	github.com/asaskevich/govalidator v0.0.0-20200907205600-7a23bdc65eef // indirect
 	github.com/elazarl/go-bindata-assetfs v1.0.1 // indirect
 	github.com/go-chi/chi v4.1.2+incompatible
+	github.com/go-chi/render v1.0.1
 	github.com/go-openapi/analysis v0.19.11 // indirect
 	github.com/go-openapi/errors v0.19.8
 	github.com/go-openapi/loads v0.19.5
@@ -16,6 +17,7 @@ require (
 	github.com/go-openapi/swag v0.19.11
 	github.com/go-openapi/validate v0.19.12
 	github.com/go-swagger/go-swagger v0.25.0
+	github.com/gofrs/uuid v3.3.0+incompatible
 	github.com/gorilla/handlers v1.5.1 // indirect
 	github.com/jessevdk/go-flags v1.4.0
 	github.com/joho/godotenv v1.3.0

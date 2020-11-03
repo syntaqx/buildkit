@@ -8,6 +8,7 @@ import (
 
 	"github.com/syntaqx/buildkit/pkg/api/v1/restapi"
 	"github.com/syntaqx/buildkit/pkg/api/v1/restapi/operations"
+	"github.com/syntaqx/buildkit/pkg/service"
 )
 
 type API struct {
@@ -25,6 +26,10 @@ func New() (*API, error) {
 	api.Middleware = func(b middleware.Builder) http.Handler {
 		return middleware.Spec("", nil, api.Context().RoutesHandler(b))
 	}
+
+	userService := service.UserService{}
+
+	userService.ConfigureAPI(api)
 
 	return &API{
 		Handler: api.Serve(nil),
