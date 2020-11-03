@@ -329,6 +329,7 @@ definitions:
         x-omitempty: false
       name:
         type: string
+        x-isnullable: true
         x-omitempty: false
       bio:
         type: string

@@ -117,7 +117,8 @@ func serverAction(cfg *config.Config) cli.ActionFunc {
 			return err
 		}
 		if db != nil {
-			defer db.Close()
+			_ = db
+			// 	defer db.Close()
 		}
 
 		listenAddr := cfg.Server.Addr

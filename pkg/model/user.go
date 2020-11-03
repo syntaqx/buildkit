@@ -16,10 +16,10 @@ type User struct {
 	Email     string
 	Password  []byte
 	AvatarURL url.URL
-	Name      string
-	Bio       string
-	Location  string
-	Company   string
+	Name      sql.NullString
+	Bio       sql.NullString
+	Location  sql.NullString
+	Company   sql.NullString
 	Birthday  sql.NullTime
 	CreatedAt time.Time
 	UpdatedAt time.Time
