@@ -29,7 +29,6 @@ require (
 	github.com/prometheus/client_golang v0.9.3
 	github.com/rs/cors v1.7.0
 	github.com/spf13/afero v1.4.1 // indirect
-	github.com/stretchr/testify v1.6.1
 	github.com/uber/jaeger-client-go v2.25.0+incompatible
 	github.com/uber/jaeger-lib v2.4.0+incompatible // indirect
 	github.com/urfave/cli/v2 v2.3.0

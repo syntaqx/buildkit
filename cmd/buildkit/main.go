@@ -22,7 +22,8 @@ func main() {
 		Name:  "buildkit",
 		Flags: globalFlags(cfg),
 		Commands: []*cli.Command{
-			Server(cfg),
+			NewServer(cfg).Command(),
+			NewMigrate(cfg).Command(),
 		},
 	}
 

@@ -5,8 +5,8 @@
 [![codecov](https://codecov.io/gh/syntaqx/buildkit/branch/main/graph/badge.svg?token=5aj7H1Xrvz)](https://codecov.io/gh/syntaqx/buildkit)
 [![Docker Image Version (latest semver)](https://img.shields.io/docker/v/syntaqx/buildkit?sort=semver)](https://hub.docker.com/r/syntaqx/buildkit)
 
-> A work in progress API boilerplate / practical implementation and base feature
-> set to save me time repeating the same code every time I start a new one.
+BuildKit is a backend boilerplate that defines an opinionated API that
+implements reusable core services for common entities.
 
 ## Service endpoints
 

@@ -20,7 +20,6 @@ func setupLogger(cfg *config.Config) (*zap.Logger, error) {
 	zconfig := zap.NewProductionConfig()
 
 	zconfig.Level.SetLevel(lvl)
-
 	zconfig.Encoding = cfg.Logging.Format
 	zconfig.EncoderConfig.EncodeTime = zapcore.RFC3339TimeEncoder
 
