@@ -9,7 +9,6 @@ import (
 	"go.uber.org/zap/zapcore"
 
 	"github.com/syntaqx/buildkit/pkg/config"
-	"github.com/syntaqx/buildkit/pkg/store"
 )
 
 func setupLogger(cfg *config.Config) (*zap.Logger, error) {
@@ -60,6 +59,6 @@ func setupTracing(cfg *config.Config) (io.Closer, error) {
 	return nil, nil
 }
 
-func setupStorage(cfg *config.Config) (store.Store, error) {
+func setupStorage(cfg *config.Config) (interface{}, error) {
 	return nil, nil
 }
