@@ -10,7 +10,6 @@ import (
 	"github.com/go-chi/chi/middleware"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/rs/cors"
-	"github.com/unrolled/secure"
 	doc "github.com/utahta/swagger-doc"
 	"go.bobheadxi.dev/zapx/util/contextx"
 	"go.bobheadxi.dev/zapx/zhttp"
@@ -39,15 +38,6 @@ func NewRouter(cfg *config.Config, log *zap.Logger) http.Handler {
 
 	r.Use(middleware.Timeout(60 * time.Second))
 	r.Use(cors.AllowAll().Handler)
-	r.Use(secure.New(secure.Options{
-		STSSeconds:            31536000,
-		STSIncludeSubdomains:  true,
-		STSPreload:            true,
-		FrameDeny:             true,
-		ContentTypeNosniff:    true,
-		BrowserXssFilter:      true,
-		ContentSecurityPolicy: "script-src $NONCE",
-	}).Handler)
 
 	r.Route("/v1", func(v1 chi.Router) {
 		api, err := apiv1.New()

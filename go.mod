@@ -32,7 +32,6 @@ require (
 	github.com/stretchr/testify v1.6.1
 	github.com/uber/jaeger-client-go v2.25.0+incompatible
 	github.com/uber/jaeger-lib v2.4.0+incompatible // indirect
-	github.com/unrolled/secure v1.0.8
 	github.com/urfave/cli/v2 v2.3.0
 	github.com/utahta/swagger-doc v0.0.1
 	go.bobheadxi.dev/zapx/util v0.6.4
