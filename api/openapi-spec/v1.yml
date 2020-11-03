@@ -3,28 +3,147 @@ swagger: "2.0"
 info:
   version: unversioned
   title: BuildKit
+  license: { name: MIT, url: https://syntaqx.mit-license.org }
 
-consumes:
-  - application/json
-
-produces:
-  - application/json
-
-schemes:
-  - http
-  - https
-
+consumes: [ application/json ]
+produces: [ application/json ]
+schemes: [ https, http ]
 basePath: /v1
 
-securityDefinitions:
-  BasicAuth:
-    type: basic
-  BearerAuth:
-    type: apiKey
-    in: header
-    name: Bearer
-
 paths:
+
+  /auth/login:
+    post:
+      summary: Authenticate an user by credentials
+      operationId: LoginUser
+      tags:
+        - auth
+      parameters:
+        - in: body
+          name: auth_login
+          description: The credentials to authenticate
+          required: true
+          schema:
+            $ref: "#/definitions/AuthLogin"
+      security: []
+      responses:
+        200:
+          description: A generated token with expire
+          schema:
+            $ref: "#/definitions/AuthToken"
+        401:
+          description: Unauthorized if wrong credentials
+          schema:
+            $ref: "#/definitions/GenericError"
+        default:
+          description: Some error unrelated to the handler
+          schema:
+            $ref: "#/definitions/GenericError"
+
+  /auth/refresh:
+    get:
+      summary: Refresh an auth token before it expires
+      operationId: RefreshAuth
+      tags:
+        - auth
+      security: []
+      responses:
+        200:
+          description: A refreshed token with expire
+          schema:
+            $ref: "#/definitions/AuthToken"
+        401:
+          description: Unauthorized if failed to generate
+          schema:
+            $ref: "#/definitions/GenericError"
+        default:
+          description: Some error unrelated to the handler
+          schema:
+            $ref: "#/definitions/GenericError"
+
+  /auth/verify/{token}:
+    get:
+      summary: Verify validity for an authentication token
+      operationId: VerifyAuth
+      tags:
+        - auth
+      parameters:
+        - in: path
+          name: token
+          description: A token that have to be checked
+          type: string
+          required: true
+      security: []
+      responses:
+        200:
+          description: Meta data of the provided token
+          schema:
+            $ref: "#/definitions/AuthVerify"
+        401:
+          description: Unauthorized if token is invalid
+          schema:
+            $ref: "#/definitions/GenericError"
+        default:
+          description: Some error unrelated to the handler
+          schema:
+            $ref: "#/definitions/GenericError"
+
+  /users:
+    get:
+      summary: Fetch all available users
+      operationId: ListUsers
+      tags:
+        - user
+      responses:
+        200:
+          description: A collection of users
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/User"
+        403:
+          description: User is not authorized
+          schema:
+            $ref: "#/definitions/GenericError"
+        default:
+          description: Some error unrelated to the handler
+          schema:
+            $ref: "#/definitions/GenericError"
+
+    post:
+      summary: Create a new user
+      operationId: CreateUser
+      tags:
+        - "user"
+      parameters:
+        - in: body
+          name: user
+          description: The user data to create
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        200:
+          description: The created user data
+          schema:
+            $ref: "#/definitions/User"
+        403:
+          description: User is not authorized
+          schema:
+            $ref: "#/definitions/GenericError"
+        412:
+          description: Failed to parse request body
+          schema:
+            $ref: "#/definitions/GenericError"
+        422:
+          description: Failed to validate request
+          schema:
+            $ref: "#/definitions/ValidationError"
+        default:
+          description: Some error unrelated to the handler
+          schema:
+            $ref: "#/definitions/GenericError"
+
   /users/{userID}:
     get:
       summary: Fetch a specific user
@@ -50,8 +169,110 @@ paths:
           description: Some error unrelated to the handler
           schema:
             $ref: "#/definitions/GenericError"
-
+    put:
+      summary: Update a specific user
+      operationId: UpdateUser
+      tags:
+        - user
+      parameters:
+        - in: path
+          name: userID
+          description: A user UUID or slug
+          type: string
+          required: true
+        - in: body
+          name: user
+          description: The user data to update
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        200:
+          description: The updated user details
+          schema:
+            $ref: "#/definitions/User"
+        403:
+          description: "User is not authorized"
+          schema:
+            $ref: "#/definitions/GenericError"
+        412:
+          description: "Failed to parse request body"
+          schema:
+            $ref: "#/definitions/GenericError"
+        422:
+          description: "Failed to validate request"
+          schema:
+            $ref: "#/definitions/ValidationError"
+        default:
+          description: "Some error unrelated to the handler"
+          schema:
+            $ref: "#/definitions/GenericError"
+    delete:
+      summary: Delete a specific user
+      operationId: DeleteUser
+      tags:
+        - user
+      parameters:
+        - in: path
+          name: userID
+          description: A user UUID or slug
+          type: string
+          required: true
+      responses:
+        200:
+          description: Plain success message
+          schema:
+            $ref: "#/definitions/GenericError"
+        403:
+          description: User is not authorized
+          schema:
+            $ref: "#/definitions/GenericError"
+        400:
+          description: Failed to delete the user
+          schema:
+            $ref: "#/definitions/GenericError"
+        default:
+          description: Some error unrelated to the handler
+          schema:
+            $ref: "#/definitions/GenericError"
 definitions:
+
+  AuthLogin:
+    type: object
+    required:
+      - username
+      - password
+    properties:
+      username:
+        type: string
+      password:
+        type: string
+        format: password
+
+  AuthToken:
+    type: object
+    required:
+      - token
+      - expires_at
+    properties:
+      token:
+        type: string
+      expires_at:
+        type: string
+        format: date-time
+
+  AuthVerify:
+    type: object
+    required:
+      - username
+      - created_at
+    properties:
+      username:
+        type: string
+      created_at:
+        type: string
+        format: date-time
+
   User:
     type: "object"
     required:
@@ -92,3 +313,29 @@ definitions:
       documentation_url:
         type: "string"
         format: "uri"
+
+  ValidationError:
+    description: Validation error which shows failed fields
+    type: object
+    required:
+      - message
+    properties:
+      message:
+        type: string
+      errors:
+        type: array
+        items:
+          type: object
+          properties:
+            field:
+              type: string
+            message:
+              type: string
+
+securityDefinitions:
+  BasicAuth:
+    type: basic
+  BearerAuth:
+    type: apiKey
+    in: header
+    name: Bearer
