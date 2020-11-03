@@ -10,6 +10,10 @@ trim_trailing_whitespace = true
 [*.go]
 indent_style = tab
 
+[Makefile]
+indent_style = tab
+indent_size = 4
+
 [*.{diff,md,txt}]
 trim_trailing_whitespace = false
 
