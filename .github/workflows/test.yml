@@ -26,6 +26,7 @@ jobs:
             ${{ runner.os }}-go-
       -
         run: |
+          make install-tools
           go mod download
           go generate ./...
 
