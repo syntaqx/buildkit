@@ -1,6 +1,6 @@
 // +build tools
 
-package buildkit
+package tools
 
 // nolint
 
