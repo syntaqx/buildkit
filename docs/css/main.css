@@ -1,0 +1,11 @@
+.kit-navbar {
+  background-color: #0b0c0b !important;
+  padding: 1rem 0;
+}
+
+.nav-scroller {
+}
+
+.nav-scroller .nav-pills .nav-link.active {
+  background-color: #232323;
+}

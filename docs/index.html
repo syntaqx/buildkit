@@ -1,1 +1,121 @@
-Hello, world!
+<!doctype html>
+<html lang="en" class="h-100">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>BuildKit</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css" integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body class="d-flex flex-column h-100">
+
+  <header>
+    <nav class="navbar navbar-expand-md navbar-dark static-top bg-dark kit-navbar">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <img src="img/logo.svg" height="32" alt="BuildKit" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+
+          <ul class="navbar-nav mr-auto mb-2 mb-md-0">
+            <li class="nav-item"><a class="nav-link" href="#">Explore</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Store</a></li>
+          </ul>
+
+          <!-- <ul class="navbar-nav mb-2 mb-md-0">
+            <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-bell"></i></a></li>
+            <li class="nav-item dropdown ml-3">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                syntaqx
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Your profile</a></li>
+                <li><a class="dropdown-item" href="#">Settings</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="/auth/logout">Sign out</a></li>
+              </ul>
+            </li>
+          </ul> -->
+
+          <ul class="navbar-nav mb-2 mb-md-0">
+            <li class="nav-item"><a class="nav-link" href="/auth/login">Sign in</a></li>
+          </ul>
+          <a class="btn btn-outline-light d-lg-inline-block my-2 my-md-0 ml-md-3" href="/auth/register">Sign up for free</a>
+
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="flex-shrink-0">
+
+    <div class="nav-scroller bg-white p-3 shadow-sm">
+      <div class="container">
+        <ul class="nav nav-pills">
+          <li class="nav-item"><a class="nav-link active" href="#">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Friends <span class="badge badge-pill bg-dark align-text-bottom">27</span></a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">Teams</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Members</a></li>
+              <li><a class="dropdown-item" href="#">Billing</a></li>
+              <li><a class="dropdown-item" href="#">Settings</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">Settings</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Profile</a></li>
+              <li><a class="dropdown-item" href="#">Emails</a></li>
+              <li><a class="dropdown-item" href="#">Password</a></li>
+              <li><a class="dropdown-item" href="#">Identities</a></li>
+              <li><a class="dropdown-item" href="#">Session</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#">Developer</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container">
+      <h1 class="mt-5">Sticky footer with fixed navbar</h1>
+      <p class="lead">Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added with <code class="small">padding-top: 60px;</code> on the <code class="small">main &gt; .container</code>.</p>
+      <p>Back to <a href="/docs/5.0/examples/sticky-footer/">the default sticky footer</a> minus the navbar.</p>
+    </div>
+  </main>
+
+  <footer class="footer mt-auto py-3 bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <ul class="list-inline mb-0">
+            <li class="list-inline-item"><span class="text-muted">
+              &copy; BuildKit.
+            </span></li>
+            <li class="list-inline-item"><a href="/terms">Terms</a></li>
+            <li class="list-inline-item"><a href="/privacy">Privacy</a></li>
+            <li class="list-inline-item"><a href="/security">Security</a></li>
+          </ul>
+        </div>
+        <div class="col text-right">
+          <ul class="list-inline mb-0">
+            <li class="list-inline-item"><a href="/pricing">Status</a></li>
+            <li class="list-inline-item"><a href="/pricing">Pricing</a></li>
+            <li class="list-inline-item"><a href="/support">Support</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js" integrity="sha384-BOsAfwzjNJHrJ8cZidOg56tcQWfp6y72vEJ8xQ9w6Quywb24iOsW913URv1IS4GD" crossorigin="anonymous"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>
