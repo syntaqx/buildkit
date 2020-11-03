@@ -4,3 +4,23 @@ services:
   buildkit:
     build: .
     image: syntaqx/buildkit
+    environment:
+      BUILDKIT_TRACING_ENABLED: "true"
+      BUILDKIT_TRACING_ENDPOINT: jaeger:5775
+    ports:
+      - '8080:8080/tcp'
+      - '8090:8090/tcp'
+
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    environment:
+      COLLECTOR_ZIPKIN_HTTP_PORT: 9411
+    ports:
+      - '5775:5775/udp'
+      - '6831:6831/udp'
+      - '6832:6832/udp'
+      - '5778:5778'
+      - '16686:16686'
+      - '14268:14268'
+      - '14250:14250'
+      - '9411:9411'

@@ -273,35 +273,6 @@ definitions:
         type: string
         format: date-time
 
-  User:
-    type: "object"
-    required:
-      - "username"
-      - "email"
-    properties:
-      id:
-        type: "string"
-        format: "uuid"
-        readOnly: true
-      username:
-        type: "string"
-        x-isnullable: false
-      password:
-        type: "string"
-        format: "password"
-      email:
-        type: "string"
-        format: "email"
-        x-isnullable: false
-      created_at:
-        type: "string"
-        format: "date-time"
-        x-isnullable: false
-      updated_at:
-        type: "string"
-        format: "date-time"
-        x-isnullable: false
-
   GenericError:
     description: General error
     type: "object"
@@ -331,6 +302,35 @@ definitions:
               type: string
             message:
               type: string
+
+  User:
+    type: object
+    required:
+      - username
+      - email
+    properties:
+      id:
+        type: string
+        format: uuid
+        readOnly: true
+      username:
+        type: string
+        x-isnullable: false
+      password:
+        type: string
+        format: password
+      email:
+        type: string
+        format: email
+        x-isnullable: false
+      created_at:
+        type: string
+        format: date-time
+        x-isnullable: false
+      updated_at:
+        type: string
+        format: date-time
+        x-isnullable: false
 
 securityDefinitions:
   BasicAuth:
