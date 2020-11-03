@@ -23,7 +23,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-go-
       -
-        run: mod-download generate
+        run: make mod-download generate
       -
         run: go test -v -race -coverprofile=coverage.out -covermode=atomic ./...
       -
