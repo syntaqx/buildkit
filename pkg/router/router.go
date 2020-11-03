@@ -29,10 +29,11 @@ func NewRouter(cfg *config.Config, log *zap.Logger) http.Handler {
 		},
 	})
 
+	r.Use(middleware.StripSlashes)
 	r.Use(middleware.RealIP)
 	r.Use(middleware.RequestID)
-	r.Use(chilog.Recoverer)
 	r.Use(chilog.Logger)
+	r.Use(chilog.Recoverer)
 
 	r.Use(middleware.Timeout(60 * time.Second))
 	r.Use(cors.AllowAll().Handler)
@@ -53,6 +54,12 @@ func NewRouter(cfg *config.Config, log *zap.Logger) http.Handler {
 			v1.Handle("/docs", doc.NewRedocHandler("/v1/swagger", "/v1/docs"))
 			v1.Mount("/", middleware.NoCache(api.Handler))
 		}
+	})
+
+	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fmt.Fprintf(w, `{"v1": "%s/v1"}`, cfg.Server.BaseURL)
 	})
 
 	if cfg.Server.Debug {
