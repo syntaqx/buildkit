@@ -67,7 +67,7 @@ func NewRouter(cfg *config.Config, log *zap.Logger) http.Handler {
 		}
 	})
 
-	r.Get("/metrics", promhttp.Handler())
+	r.Handle("/metrics", promhttp.Handler())
 
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
