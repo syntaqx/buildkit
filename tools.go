@@ -20,5 +20,4 @@ import (
 	_ "github.com/go-openapi/validate"
 	_ "github.com/go-swagger/go-swagger/cmd/swagger"
 	_ "github.com/jessevdk/go-flags"
-	_ "github.com/spf13/pflags"
 )
