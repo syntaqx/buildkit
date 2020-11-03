@@ -1,0 +1,49 @@
+name: test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+
+  go:
+    runs-on: ubuntu-latest
+    env:
+      GOPROXY: "https://proxy.golang.org"
+    steps:
+      -
+        name: git checkout
+        uses: actions/checkout@v2
+      -
+        name: setup go
+        uses: actions/setup-go@v2
+      -
+        uses: actions/cache@v2.1.2
+        with:
+          path: ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+      -
+        run: |
+          go mod download
+          go test -v -race -coverprofile=coverage.out -covermode=atomic ./...
+      -
+        name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1.0.13
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./coverage.out
+
+    golangci:
+      runs-on: ubuntu-latest
+      steps:
+        -
+          name: git checkout
+          uses: actions/checkout@v2
+        -
+          uses: golangci/golangci-lint-action@v2
+          name: golangci-lint
+          with:
+            version: v1.32
+          continue-on-error: true # TODO: require this, disabled during prototype
