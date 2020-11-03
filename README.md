@@ -1,1 +1,1 @@
-![buildkit](./assets/og-social-preview.png)
+![buildkit](assets/og-social-preview.png)
