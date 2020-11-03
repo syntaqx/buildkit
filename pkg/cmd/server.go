@@ -108,7 +108,11 @@ func serverAction(cfg *config.Config) cli.ActionFunc {
 			return err
 		}
 		if logger != nil {
-			defer logger.Sync()
+			defer func() {
+				if err := logger.Sync(); err != nil {
+					logger.Fatal("zap.Logger.Sync failed", zap.Error(err))
+				}
+			}()
 		}
 
 		tracing, err := setupTracing(cfg)

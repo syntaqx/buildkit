@@ -1,10 +1,23 @@
-PATH := $(shell go env GOPATH)/bin:$(PATH)
+SHELL := bash
+PATH  := $(shell go env GOPATH)/bin:$(PATH)
 
-mod-download:
+ifndef VERBOSE
+.SILENT:
+endif
+
+.PHONY: sync
+sync:
 	go mod download
 
-install-tools:
+.PHONY: generate
+generate: tools
+	go generate ./pkg/api/v1/...
+
+.PHONY: tools
+tools:
 	go list -f '{{range .Imports}}{{.}} {{end}}' ./tools/tools.go | xargs go install
 
-generate: install-tools
-	go generate ./...
+.PHONY: clean
+clean:
+	go clean -i ./...
+	rm -rf pkg/api/v1/models pkg/api/v1/restapi

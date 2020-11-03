@@ -11,6 +11,8 @@ import (
 	"github.com/syntaqx/buildkit/pkg/service"
 )
 
+//go:generate swagger generate server --target . --spec ../../../api/openapi-spec/v1.yml --exclude-main --regenerate-configureapi
+
 type API struct {
 	Handler http.Handler
 }
