@@ -8,6 +8,7 @@ import (
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/rs/cors"
 	"github.com/unrolled/secure"
 	doc "github.com/utahta/swagger-doc"
@@ -65,6 +66,8 @@ func NewRouter(cfg *config.Config, log *zap.Logger) http.Handler {
 			v1.Mount("/", middleware.NoCache(api.Handler))
 		}
 	})
+
+	r.Get("/metrics", promhttp.Handler())
 
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
