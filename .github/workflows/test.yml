@@ -8,8 +8,6 @@ jobs:
 
   go:
     runs-on: ubuntu-latest
-    env:
-      GOPROXY: "https://proxy.golang.org"
     steps:
       -
         name: git checkout
@@ -26,8 +24,7 @@ jobs:
             ${{ runner.os }}-go-
       -
         run: |
-          make install-tools
-          go mod download
+          make install-tools mod-download
           go generate ./...
 
       - run: go test -v -race -coverprofile=coverage.out -covermode=atomic ./...
@@ -50,8 +47,7 @@ jobs:
         uses: actions/setup-go@v2
       -
         run: |
-          make install-tools
-          go mod download
+          make install-tools mod-download
           go generate ./...
       -
         uses: golangci/golangci-lint-action@v2
