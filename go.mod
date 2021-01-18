@@ -12,7 +12,7 @@ require (
 	github.com/go-openapi/loads v0.19.5
 	github.com/go-openapi/runtime v0.19.23
 	github.com/go-openapi/spec v0.19.12
-	github.com/go-openapi/strfmt v0.19.8
+	github.com/go-openapi/strfmt v0.20.0
 	github.com/go-openapi/swag v0.19.11
 	github.com/go-openapi/validate v0.19.12
 	github.com/go-swagger/go-swagger v0.25.0
@@ -39,7 +39,7 @@ require (
 	go.uber.org/multierr v1.6.0 // indirect
 	go.uber.org/zap v1.16.0
 	golang.org/x/crypto v0.0.0-20200709230013-948cd5f35899
-	golang.org/x/net v0.0.0-20201031054903-ff519b6c9102
+	golang.org/x/net v0.0.0-20201031054903-ff519b6c9102 // indirect
 	golang.org/x/sys v0.0.0-20201101102859-da207088b7d1 // indirect
 	golang.org/x/text v0.3.4 // indirect
 	golang.org/x/tools v0.0.0-20201102212025-f46e4245211d // indirect
