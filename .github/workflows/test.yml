@@ -45,7 +45,7 @@ jobs:
       -
         run: make generate
       -
-        uses: golangci/golangci-lint-action@v2
+        uses: golangci/golangci-lint-action@v2.4.0
         name: golangci-lint
         with:
           version: v1.32
