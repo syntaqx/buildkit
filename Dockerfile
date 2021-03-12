@@ -1,4 +1,4 @@
-FROM golang:1.15-alpine AS builder
+FROM golang:1.16.2-alpine AS builder
 WORKDIR /opt
 
 RUN apk add --no-cache ca-certificates curl bash make git
